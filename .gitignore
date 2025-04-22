@@ -1,0 +1,36 @@
+# Ignore editor configuration files
+.vscode/
+.idea/
+*.swp
+
+# Ignore log files
+*.log
+
+# Ignore compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore Cursor rules files
+.cursor/rules/
+
+# Ignore dependency files
+node_modules/
+
+# Ignore outputs and models directories
+outputs/
+models/
+runs/
+wandb/
+results/
+logs/
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Hydra outputs
+multirun/
+.hydra/

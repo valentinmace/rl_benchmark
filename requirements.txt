@@ -1,0 +1,22 @@
+# Base dependencies
+numpy
+tqdm
+
+# Main libraries
+stable-baselines3
+gymnasium[all]
+torch
+
+# Visualization and reporting
+matplotlib
+seaborn
+tensorboard
+# Configuration and utilities
+hydra-core
+omegaconf
+
+# Development tools
+pytest
+black
+flake8
+pre-commit

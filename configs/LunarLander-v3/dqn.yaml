@@ -1,0 +1,20 @@
+defaults:
+  - override hydra/job_logging: default
+  - override hydra/hydra_logging: default
+
+
+env_id: LunarLander-v3  # ID of the Gymnasium environment to use
+seed: 2303  # Random seed for reproducibility
+
+# Agent parameters
+agent_type: DQN  # Deep Q-Network algorithm
+learning_rate: 0.001  # Step size for optimizer updates
+buffer_size: 10000  # Size of the replay buffer
+learning_starts: 1000  # Number of steps before learning starts
+batch_size: 32  # Number of samples per optimization step
+tau: 1.0  # Soft update coefficient for target network
+gamma: 0.99  # Discount factor for future rewards (0-1)
+
+# Training parameters
+total_timesteps: 10000  # Total number of timesteps to train
+log_interval: 10  # Number of updates between logging events

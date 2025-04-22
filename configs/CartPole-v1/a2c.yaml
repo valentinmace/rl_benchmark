@@ -1,0 +1,19 @@
+defaults:
+  - override hydra/job_logging: default
+  - override hydra/hydra_logging: default
+
+
+env_id: CartPole-v1  # ID of the Gymnasium environment to use
+seed: 2303  # Random seed for reproducibility
+
+# Agent parameters
+agent_type: A2C  # Advantage Actor-Critic algorithm
+learning_rate: 0.0007  # Step size for optimizer updates
+n_steps: 5  # Number of steps to run per update
+gamma: 0.99  # Discount factor for future rewards (0-1)
+gae_lambda: 0.95  # Factor for Generalized Advantage Estimation
+ent_coef: 0.0  # Entropy coefficient for exploration (higher = more exploration)
+
+# Training parameters
+total_timesteps: 10000  # Total number of timesteps to train
+log_interval: 10  # Number of updates between logging events
