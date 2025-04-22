@@ -3,57 +3,137 @@
 ![CI Status](https://github.com/valentinmace/rl_benchmark/actions/workflows/tests.yml/badge.svg)
 
 ## Overview
-This repository provides a suite for benchmarking reinforcement learning (RL) agents using stable-baselines3 on classic RL environments. The goal is to demonstrate clean, modular code with best practices in CI/CD, unit testing, and reporting.
+
+This repository serves as a personal demonstration of software engineering good practices in the context of reinforcement learning (RL). Rather than focusing on novel algorithms, this project emphasizes:
+
+- Clean, type-annotated code
+- Continuous integration and automated testing
+- Configuration management with Hydra
+- Standardized code formatting and linting
+- Reproducible environments with Docker
+- Proper dependency management
 
 ## Project Structure
-- `agents/`: Wrappers around SB3 algorithms.
-- `envs/`: Setup and configuration of environments.
-- `training/`: Scripts for training and evaluation.
-- `configs/`: YAML configurations for hyperparameters and environments.
-- `tests/`: Pytest for critical components.
-- `scripts/`: Scripts to run experiments and generate reports.
-- `reports/`: Logs, plots, and stats.
-- `.github/workflows/`: CI with GitHub Actions.
+
+- `agents/`: Algorithm implementations and wrappers for Stable Baselines 3.
+- `configs/`: YAML configuration files using Hydra for hyperparameter management.
+- `envs/`: Environment setup and configuration utilities.
+- `training/`: Core training and evaluation logic.
+- `scripts/`: Automation scripts for running experiments.
+- `tests/`: Unit and integration tests.
+- `outputs/`: Generated models, logs, and evaluation results (created at runtime).
+- `.github/workflows/`: CI pipeline definitions.
 
 ## Getting Started
 
 ### Prerequisites
-- Python 3.10
-- Docker (optional for containerized setup)
+
+- Python 3.10+
+- Docker (recommended for containerized execution)
 
 ### Installation
+
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/valentinmace/rl_benchmark.git
    cd rl_benchmark
    ```
-2. Install the required Python packages:
+
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up pre-commit hooks:
+
+3. Set up pre-commit hooks for code quality:
    ```bash
    pre-commit install
    ```
 
+### Docker Setup (Recommended)
+
+For consistent environments across systems:
+
+```bash
+# Build the Docker image
+make build
+
+# Run the container with shell access
+make shell
+```
+
 ## Usage
 
-### Training
-To train an agent, run:
+### Running Experiments
+
+The project includes a convenient script to run training and evaluation for multiple environments and algorithms:
+
 ```bash
-python training/train.py hydra.run.dir=./outputs +config_path=../configs/CartPole-v1/ppo.yaml
+# Run a specific environment-algorithm combination
+./scripts/run.sh CartPole-v1 ppo
+
+# Or run all predefined combinations
+./scripts/run.sh
 ```
 
-### Evaluation
-To evaluate a trained agent, run:
+### Evaluating Trained Models
+
+To evaluate a previously trained model:
+
 ```bash
-python training/evaluate.py hydra.run.dir=./outputs +config_path=../configs/CartPole-v1/ppo.yaml
+# Format: ./scripts/run_eval.sh <environment> <algorithm> <timestamp>
+./scripts/run_eval.sh CartPole-v1 ppo 20230415_120530
 ```
 
-## Contributing
+### Output Structure
+
+All experiment outputs are organized in a consistent directory structure:
+
+```
+outputs/
+└── <environment>/
+    └── <algorithm>/
+        └── <timestamp>/
+            ├── model/         # Saved model files
+            ├── logs/          # Training logs (CSV and TensorBoard)
+            ├── hydra/         # Hydra configuration logs
+            └── eval_results/  # Evaluation metrics and data
+```
+
+## Development Practices
 
 ### Code Style
-This project uses `black` and `flake8` for code formatting and linting. Ensure your code is formatted and linted before committing.
 
-### Pre-commit Hooks
-We use pre-commit hooks to automate code quality checks. Make sure to set up pre-commit hooks as described in the installation section.
+This project strictly adheres to:
+- [PEP 8](https://pep8.org/) style guide
+- Type annotations as per [PEP 484](https://peps.python.org/pep-0484/)
+- Code formatting with [Black](https://black.readthedocs.io/)
+- Linting with [Flake8](https://flake8.pycqa.org/)
+
+### Testing
+
+Tests are written using pytest and automatically run through GitHub Actions on every push and pull request to the main branch.
+
+To run tests locally:
+
+```bash
+pytest
+```
+
+### Continuous Integration
+
+The CI pipeline runs the following checks:
+- Code linting with flake8
+- Code formatting with black
+- Unit and integration tests with pytest
+
+## Supported Environments and Algorithms
+
+### Environments
+- CartPole-v1
+- LunarLander-v3
+- MountainCar-v0
+
+### Algorithms
+- PPO (Proximal Policy Optimization)
+- DQN (Deep Q-Network)
+- A2C (Advantage Actor-Critic)
