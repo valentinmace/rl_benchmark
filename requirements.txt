@@ -1,22 +1,22 @@
 # Base dependencies
-numpy
-tqdm
+numpy==2.2.5
+tqdm==4.67.1
 
 # Main libraries
 stable-baselines3
-gymnasium[all]
-torch
+gymnasium[all]==1.1.1
+torch==2.6.0
 
 # Visualization and reporting
-matplotlib
-seaborn
-tensorboard
+matplotlib==3.10.1
+seaborn==0.13.2
+tensorboard==2.19.0
 # Configuration and utilities
-hydra-core
-omegaconf
+hydra-core==1.3.2
+omegaconf==2.3.0
 
 # Development tools
-pytest
-black
-flake8
+pytest==8.3.5
+black==25.1.0
+flake8==7.2.0
 pre-commit
