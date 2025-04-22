@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="assets/logo.png" alt="RL Benchmark Logo" width="110"/>
+</p>
+
 # RL Benchmark Suite
 
 ![CI Status](https://github.com/valentinmace/rl_benchmark/actions/workflows/tests.yml/badge.svg)
